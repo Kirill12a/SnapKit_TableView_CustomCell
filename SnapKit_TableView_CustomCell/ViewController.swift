@@ -7,13 +7,48 @@
 
 import UIKit
 
-class ViewController: UIViewController {
 
+
+
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+        /// tableview
+    let LeftCellIDF = "LeftChatCellIDF"
+    let RightCellIDF = "RightChatCellIDF"
+    let DataArr = ["Кирилл","Вася","Даня","Антон"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.CreateUI()
         // Do any additional setup after loading the view.
     }
-
+    func CreateUI() -> Void {
+        self.title = "Привет"
+        let ChatTable:UITableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height), style: UITableView.Style.plain)
+        self.view.addSubview(ChatTable)
+        ChatTable.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
+        ChatTable.delegate = self
+        ChatTable.dataSource = self
+        ChatTable.register(XLLeftCell().classForCoder, forCellReuseIdentifier:LeftCellIDF)
+        ChatTable.register(XLRightCell().classForCoder, forCellReuseIdentifier: RightCellIDF)
+        ChatTable.estimatedRowHeight = 80
+        ChatTable.rowHeight = UITableView.automaticDimension
+    }
+// delegate
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return DataArr.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row % 2 == 1 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: LeftCellIDF) as! XLLeftCell
+            cell.ConfigCellWithContain(DataArr[indexPath.row])
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: RightCellIDF) as! XLRightCell
+            cell.ConfigCellWithContain(DataArr[indexPath.row])
+            return cell
+        }
+    }
+   
 
 }
-
