@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class XLLeftCell: UITableViewCell {
+class SecondCell: UITableViewCell {
     var ContainLab:UILabel
     lazy var HeadImg:UIImageView? = {
         return UIImageView.init(image: UIImage.init(named: "Left"))

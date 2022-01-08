@@ -9,7 +9,7 @@
 
 import UIKit
 let IMG = UIImage.init(named: "hi")?.stretchableImage(withLeftCapWidth: 60, topCapHeight: 60)
-class XLRightCell: UITableViewCell {
+class FirstCell: UITableViewCell {
     var ContainLab:UILabel
     lazy var HeadImg:UIImageView? = {
         return UIImageView.init(image: UIImage.init(named: "Right"))
