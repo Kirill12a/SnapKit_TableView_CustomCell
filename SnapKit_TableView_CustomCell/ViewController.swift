@@ -11,9 +11,9 @@ import UIKit
 
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
-    let LeftCellIDF = "LeftChatCellIDF"
-    let RightCellIDF = "RightChatCellIDF"
-    let DataArr = ["Кирилл","Вася","Даня","Антон"]
+    let sedondCellIDF = "LeftChatCellIDF"
+    let firstCellIDF = "RightChatCellIDF"
+    let arrayName = ["Кирилл","Вася","Даня","Антон"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +26,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         ChatTable.separatorStyle = UITableViewCell.SeparatorStyle.singleLine
         ChatTable.delegate = self
         ChatTable.dataSource = self
-        ChatTable.register(SecondCell().classForCoder, forCellReuseIdentifier:LeftCellIDF)
-        ChatTable.register(FirstCell().classForCoder, forCellReuseIdentifier: RightCellIDF)
+        ChatTable.register(SecondCell().classForCoder, forCellReuseIdentifier:firstCellIDF)
+        ChatTable.register(FirstCell().classForCoder, forCellReuseIdentifier: sedondCellIDF)
         ChatTable.estimatedRowHeight = 80
         ChatTable.rowHeight = UITableView.automaticDimension
     }
@@ -35,16 +35,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return DataArr.count
+        return arrayName.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row % 2 == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: LeftCellIDF) as! SecondCell
-            cell.ConfigCellWithContain(DataArr[indexPath.row])
+            let cell = tableView.dequeueReusableCell(withIdentifier: firstCellIDF) as! SecondCell
+            cell.ConfigCellWithContain(arrayName[indexPath.row])
             return cell
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: RightCellIDF) as! FirstCell
-            cell.ConfigCellWithContain(DataArr[indexPath.row])
+            let cell = tableView.dequeueReusableCell(withIdentifier: sedondCellIDF) as! FirstCell
+            cell.ConfigCellWithContain(arrayName[indexPath.row])
             return cell
         }
     }

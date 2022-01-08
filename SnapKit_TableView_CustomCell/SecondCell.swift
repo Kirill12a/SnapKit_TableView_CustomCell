@@ -10,14 +10,16 @@ import UIKit
 import SnapKit
 
 class SecondCell: UITableViewCell {
-    var ContainLab:UILabel
-    lazy var HeadImg:UIImageView? = {
+    
+    var containLab:UILabel
+    lazy var headImg:UIImageView? = {
         return UIImageView.init(image: UIImage.init(named: "Left"))
     }()
-    fileprivate var ImgV:UIImageView?
+    
+    fileprivate var imgV:UIImageView?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        ContainLab = UILabel()
+        containLab = UILabel()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.InitUI()
     }
@@ -25,49 +27,43 @@ class SecondCell: UITableViewCell {
         self.selectionStyle = UITableViewCell.SelectionStyle.gray
         self.backgroundColor = UIColor.clear
         self.contentView.backgroundColor = UIColor.blue
-        self.contentView.addSubview(HeadImg!)
-        HeadImg?.snp.makeConstraints({ (make) in
-            make.left.equalTo(self.contentView).offset(15)
-            make.top.equalTo(self.contentView).offset(15)
-            make.width.equalTo(40)
-            make.height.equalTo(40)
+        self.contentView.addSubview(headImg!)
+        headImg?.snp.makeConstraints({ (make) in
+            make.left.equalTo(self.contentView).offset(10) // Отступ слева
+            make.top.equalTo(self.contentView).offset(10)  // Отступ сверху
+            make.width.equalTo(50)
+            make.height.equalTo(50)
             
             
             
             
         })
-        let BacImgv:UIImageView = UIImageView.init()
-        BacImgv.image = IMG
-        self.contentView.addSubview(BacImgv)
-        BacImgv.snp.makeConstraints { (make) in
-            make.left.equalTo((HeadImg?.snp_rightMargin)!).offset(20)
-            make.top.equalTo(self.contentView).offset(15)
-            make.bottom.equalTo(self.contentView).offset(-15)
-            make.width.lessThanOrEqualTo(200)
-            make.height.lessThanOrEqualTo(200)
+        let bacImgv:UIImageView = UIImageView.init()
+        bacImgv.image = img
+//        bacImgv.backgroundColor = .black
+        self.contentView.addSubview(bacImgv)
+        bacImgv.snp.makeConstraints { (make) in
+            make.left.equalTo((headImg?.snp_leftMargin)!).offset(20)
+            make.top.equalTo(self.contentView).offset(20)
+            make.bottom.equalTo(self.contentView).offset(-20)
+            make.width.equalTo(200)
+            make.height.equalTo(200)
         }
-        ContainLab.numberOfLines = 0
-        ContainLab.backgroundColor = UIColor.clear
-        self.contentView.addSubview(ContainLab)
-        ContainLab.snp.makeConstraints({ (make) in
-            make.edges.equalTo(BacImgv).inset(UIEdgeInsets.init(top: 20, left: 20, bottom: 20, right: 20))
+        containLab.numberOfLines = 0
+        containLab.backgroundColor = UIColor.clear
+        self.contentView.addSubview(containLab)
+        containLab.snp.makeConstraints({ (make) in
+//            make.edges.equalTo(bacImgv).inset(UIEdgeInsets.init(top: 20, left: 20, bottom: 20, right: 20))
+            make.centerX.centerY.equalToSuperview()
         })
     }
-    internal func ConfigCellWithContain(_ contain:String){
-        ContainLab.text = contain
+     func ConfigCellWithContain(_ contain:String){
+        containLab.text = contain
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+  
 
 }
