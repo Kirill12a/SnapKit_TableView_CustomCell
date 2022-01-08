@@ -49,6 +49,8 @@ class FirstCell: UITableViewCell {
         }
         containLab.numberOfLines = 0
         containLab.backgroundColor = UIColor.clear
+        containLab.font = .boldSystemFont(ofSize: 45)
+        containLab.textColor = .purple
         self.contentView.addSubview(containLab)
         containLab.snp.makeConstraints({ (make) in
             make.edges.equalTo(bacImgv).inset(UIEdgeInsets.init(top: 20, left: 20, bottom: 20, right: 20))
